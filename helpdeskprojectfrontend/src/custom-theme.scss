@@ -1,0 +1,27 @@
+// ✅ ESTA LINHA DEVE SER A PRIMEIRA DO ARQUIVO
+@use '@angular/material' as mat;
+
+// ✅ Define o tema do Material Design 3 para toda a aplicação
+html {
+  @include mat.theme((
+    color: (
+      primary: mat.$magenta-palette, // você pode trocar por azure se preferir
+      tertiary: mat.$violet-palette,
+    ),
+    typography: Roboto,
+    density: 0, // 0 = padrão, -1 = mais compacto, 1 = maior espaçamento
+  ));
+}
+
+body {
+  // ✅ Define o esquema de cor claro por padrão
+  color-scheme: light;
+
+  // ✅ Define cores e estilos base do Material
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+
+  // Remove margens padrão
+  margin: 0;
+}
