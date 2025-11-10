@@ -1,0 +1,113 @@
+/* Faz o container principal ocupar 100% da tela */
+.container-principal {
+  height: 100vh;
+  width: 100vw;
+  background-color:#1a1c1e;
+}
+
+/* Estilos do Sidenav (menu lateral) */
+.sidenav {
+  width: 250px;
+  background-color:#1a1c1e;
+  border-right: 1px solid #eee;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+}
+
+/* Container do Logo no topo do Sidenav */
+.logo-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #21d184;
+}
+
+.logo-container mat-icon{
+  height: 30px;
+  width: 40px;
+}
+
+.sidenav{
+  border-radius: 0px 4px 4px 0px;
+  border-right: 1px solid #21d184;
+}
+
+.logo-icon {
+  font-size: 32px;
+  margin-right: 12px;
+  color: #21d184;
+}
+
+.logo-text {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #ffffff;
+
+}
+
+/* Estilizando cada item do menu */
+.nav-item {
+display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 20px;
+  height: 50px; /* Adicionar uma altura fixa pode ajudar também */
+  color: #ffffff;
+}
+.nav-item:hover {
+  border-radius: 4px;
+  background-color: #21d184;
+  color: #000;
+}
+
+.nav-item span{
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.mat-drawer-inner-container{
+  border-right: solid 1px #21d184;
+}
+
+.nav-item mat-icon {
+  margin-right: 12px;
+  color: #21d184;
+  border-radius: 4px;
+  padding: 0;
+}
+
+
+.nav-item:hover mat-icon {
+  color: #ffffff;
+}
+
+/* Estilos da Toolbar (barra do topo) */
+.toolbar {
+  background-color: #1a1c1e;
+  color: #eee;
+  height: 71px;
+  border-bottom: 1px solid #21d184;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.toolbar mat-icon{
+  color: #eee;
+}
+
+.toolbar button:hover{
+  background-color: #21d184;
+}
+
+/* Container do conteúdo da página */
+.conteudo-principal {
+  background-color: #1a1c1e;
+}
+
+.pagina{
+  color: #eee;
+}
+
+.pagina {
+  padding: 30px;
+}

@@ -1,0 +1,122 @@
+.login-wrapper {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;     /* Centraliza verticalmente */
+    min-height: 100vh;       /* Garante que ocupe a altura total da tela */
+      background-color:#1a1c1e;
+      position: relative; /* Essencial para que as bolhas sejam posicionadas DENTRO */
+    overflow: hidden;
+}
+
+.background-blob {
+    /* 1. Estilo Básico da Bolha */
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%; /* Transforma o div em um círculo perfeito */
+    z-index: 1; /* Garante que as bolhas fiquem ATRÁS do card de login */
+    opacity: 0.7; /* Suaviza o brilho */
+    
+    /* 2. O EFEITO BLUR (o 'vidro embaçado') */
+    filter: blur(90px); /* O valor alto cria o efeito de brilho suave */
+    transition: all 0.5s ease-out; /* Opcional: para futuras animações */
+}
+
+/* Bolha 1: Posição e Cor (Verde/Acento) */
+.blob-1 {
+    background-color: #16A085; /* Seu verde de destaque */
+    top: 10%;
+    left: 5%;
+}
+
+/* Bolha 2: Posição e Cor (Escuro/Contraste) */
+.blob-2 {
+    background-color: #007bff; /* Um azul mais escuro para profundidade */
+    bottom: 0%;
+    right: 10%;
+    width: 250px;
+    height: 250px;
+}
+
+.blob-3{
+    background-color: #21d184; /* Seu verde de destaque */
+    width: 220px;
+    height: 220px;
+    top: 50%;
+    right: 50%;
+    left: 50%;
+}
+.blob-4{
+      background-color: #04d898; /* Um azul mais escuro para profundidade */
+    top: 5%;
+    right: 5%;
+    width: 150px;
+    height: 150px;
+}
+
+
+.login-card {
+  color: white;
+  z-index: 2; 
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    padding: 40px;
+    border-radius: 8px;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(0, 0, 0, 0.356);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaço entre os inputs */
+}
+
+/* Estilo do botão */
+.login-button {
+    padding: 12px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-align: center;
+    transition: 0.2s ease-in-out ;
+      border: 2px solid #21d184;
+}
+
+.login-button:hover{
+  transform: scale(1.05);
+  background-color: #21d184;
+}
+
+.input-group input{
+  padding: 10px 5px ;
+  width: 250px;
+  border-radius: 4px;
+  border: 2px solid #21d184;
+}
+
+.rodape-login{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.recuperar{
+  display: flex;
+  color: white;
+  text-align: start;
+  align-self: start;
+}
