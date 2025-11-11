@@ -11,7 +11,7 @@ Este projeto é a interface **frontend** de um sistema Helpdesk, criado em conju
 
 - [Angular 16](https://angular.io/) – Framework JavaScript moderno para aplicações web.
 - [Angular Material](https://material.angular.io/) – Biblioteca de componentes UI para Angular.
-- TypeScript – Linguagem principal do projeto.
+- [TypeScript](https://www.typescriptlang.org/) – Linguagem principal do projeto.
 - HTML5 / CSS3 – Marcação e estilos.
 - SCSS – Pré-processador CSS para facilitar a criação de temas e estilos.
 
