@@ -25,16 +25,33 @@ export class LoginComponent {
     private toastr: ToastrService
   ) {}
 
-  entrar() {
-    this.authService.authenticate(this.creds).subscribe({
-      next: (response) => {
-        this.authService.sucessfulLogin(response);
-        this.toastr.success('Login realizado com sucesso!', 'Bem-vindo');
-        this.router.navigate(['/home']);
-      },
-      error: (err) => {
-        this.toastr.error('Usuário ou senha inválidos', 'Erro no login');
-      }
-    });
+entrar() {
+  // valida email
+  if (!this.creds.email || !this.validateEmail(this.creds.email)) {
+    this.toastr.error('Digite um email válido');
+    return;
   }
+
+  // valida senha
+  if (!this.creds.senha || this.creds.senha.length < 2) {
+    this.toastr.error('A senha deve ter pelo menos 2 caracteres');
+    return;
+  }
+
+  // se passou nas validações, chama o backend
+  this.authService.authenticate(this.creds).subscribe({
+    next: (response) => {
+      this.authService.sucessfulLogin(response);
+      this.toastr.success('Login realizado com sucesso!', 'Bem-vindo');
+      this.router.navigate(['/home']);
+    },
+    error: () => {
+      this.toastr.error('Usuário ou senha inválidos', 'Erro no login');
+    }
+  });
+}
+validateEmail(email: string): boolean {
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
+}
 }
