@@ -5,15 +5,15 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
+    provideHttpClient(), // ✔ CORRETO
     importProvidersFrom(
       BrowserAnimationsModule,
-      ToastrModule.forRoot(),
-      HttpClientModule
+      ToastrModule.forRoot()
     )
   ]
 }).catch(err => console.error(err));

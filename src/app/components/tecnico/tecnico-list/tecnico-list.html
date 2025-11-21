@@ -1,0 +1,20 @@
+<h1>Lista de Técnicos</h1>
+
+<button (click)="navigateToCreate()">+ Novo Técnico</button>
+
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Email</th>
+    <th>Ações</th>
+  </tr>
+
+  <tr *ngFor="let t of tecnicos">
+    <td>{{ t.nome }}</td>
+    <td>{{ t.email }}</td>
+    <td>
+      <button (click)="router.navigate(['/tecnicos/update', t.id])">Editar</button>
+      <button (click)="router.navigate(['/tecnicos/delete', t.id])">Excluir</button>
+    </td>
+  </tr>
+</table>
