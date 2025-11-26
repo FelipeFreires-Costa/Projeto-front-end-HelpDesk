@@ -11,9 +11,11 @@ import { ToastrService } from 'ngx-toastr';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './login.html',
-  styleUrl: './login.css'
+  styleUrls: ['./login.css']
 })
 export class LoginComponent {
+
+  // 🔥 precisa disso, você tinha removido sem querer
   creds: Credenciais = {
     email: '',
     senha: ''
@@ -25,33 +27,27 @@ export class LoginComponent {
     private toastr: ToastrService
   ) {}
 
-entrar() {
-  // valida email
-  if (!this.creds.email || !this.validateEmail(this.creds.email)) {
-    this.toastr.error('Digite um email válido');
-    return;
-  }
+  entrar() {
+    console.log("[LOGIN] iniciar entrar()", this.creds);
 
-  // valida senha
-  if (!this.creds.senha || this.creds.senha.length < 2) {
-    this.toastr.error('A senha deve ter pelo menos 2 caracteres');
-    return;
-  }
+    this.authService.authenticate(this.creds).subscribe({
+      next: (response: any) => {
+        console.log("[LOGIN] resposta do /login:", response);
 
-  // se passou nas validações, chama o backend
-  this.authService.authenticate(this.creds).subscribe({
-    next: (response) => {
-      this.authService.sucessfulLogin(response);
-      this.toastr.success('Login realizado com sucesso!', 'Bem-vindo');
-      this.router.navigate(['/home']);
-    },
-    error: () => {
-      this.toastr.error('Usuário ou senha inválidos', 'Erro no login');
-    }
-  });
-}
-validateEmail(email: string): boolean {
-  const re = /\S+@\S+\.\S+/;
-  return re.test(email);
-}
+        // backend retorna string pura → remove aspas se vier com elas
+        const token = (response as string).replace(/"/g, "");
+        localStorage.setItem('token', token);
+
+        console.log("[LOGIN] token salvo no localStorage:", token);
+
+        const ok = this.router.navigate(['/home']);
+        console.log("[LOGIN] navigate ->", ok);
+      },
+
+      error: (err: any) => {
+        console.error("[LOGIN] erro:", err);
+        this.toastr.error("Usuário ou senha inválidos", "Erro");
+      }
+    });
+  }
 }

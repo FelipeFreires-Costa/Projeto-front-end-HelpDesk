@@ -8,31 +8,34 @@
     </div>
 
     <mat-nav-list class="container-item">
-      <a mat-list-item href="#" class="nav-item">
+
+      <a mat-list-item routerLink="/home" class="nav-item">
         <mat-icon>home</mat-icon>
         <span>Home</span>
       </a>
 
-      <a mat-list-item href="#" class="nav-item">
+      <a mat-list-item routerLink="/tecnicos" class="nav-item">
         <mat-icon>support_agent</mat-icon>
         <span>Técnico</span>
       </a>
 
-      <a mat-list-item href="#" class="nav-item">
+      <a mat-list-item routerLink="/clientes" class="nav-item">
         <mat-icon>person</mat-icon>
         <span>Cliente</span>
       </a>
 
-      <a mat-list-item href="#" class="nav-item">
+      <a mat-list-item routerLink="/chamados" class="nav-item">
         <mat-icon>receipt_long</mat-icon>
         <span>Chamado</span>
       </a>
 
       <a mat-list-item href="https://github.com" target="_blank" class="nav-item">
-        <mat-icon>code</mat-icon> <span>Felipe Freires</span>
+        <mat-icon>code</mat-icon> 
+        <span>Felipe Freires</span>
       </a>
-    </mat-nav-list>
 
+    </mat-nav-list>
+    
   </mat-drawer>
 
   <mat-drawer-content class="conteudo-principal">
@@ -44,12 +47,7 @@
       <span>Gestão de Chamados</span>
     </mat-toolbar>
 
-    <div class="pagina">
-      <h1>Estagio supervisionado</h1>
-      <p>FrontEnd helpDesk.</p>
-      
-      </div>
-
+    <router-outlet></router-outlet>
   </mat-drawer-content>
 
 </mat-drawer-container>

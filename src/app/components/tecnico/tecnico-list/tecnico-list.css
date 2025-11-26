@@ -1,0 +1,42 @@
+*{
+    color: white;
+}
+
+.container {
+  width: 90%;
+  margin: 20px auto;
+
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+
+}
+
+.container-form {
+  width: 60%;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  
+}
+
+.full-width {
+  width: 100%;
+  
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+  
+}
+
+.container-delete {
+  width: 60%;
+  margin: 30px auto;
+}

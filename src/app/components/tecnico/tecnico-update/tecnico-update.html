@@ -1,0 +1,32 @@
+<div class="container-form">
+  <h1>Editar Técnico</h1>
+
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="nome" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>CPF</mat-label>
+      <input matInput formControlName="cpf" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+    </mat-form-field>
+
+    <div class="buttons">
+      <button mat-raised-button color="primary" (click)="update()">
+        <mat-icon>save</mat-icon>
+        Atualizar
+      </button>
+
+      <button mat-raised-button color="warn" routerLink="/tecnicos">
+        <mat-icon>arrow_back</mat-icon>
+        Voltar
+      </button>
+    </div>
+  </form>
+</div>

@@ -7,19 +7,22 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
   standalone: true,
   // Adicione todos os módulos aqui
-  imports: [
-    CommonModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatListModule,
-    MatIconModule,
-    MatButtonModule
-  ],
+imports: [
+  CommonModule,
+  MatSidenavModule,
+  MatToolbarModule,
+  MatListModule,
+  MatIconModule,
+  MatButtonModule,
+  RouterOutlet,
+  RouterLink
+],
   templateUrl: './nav.html',
   styleUrl: './nav.css'
 })

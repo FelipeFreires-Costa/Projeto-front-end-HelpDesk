@@ -1,47 +1,66 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
 import { TecnicoService } from '../../../services/tecnico.service';
 import { Tecnico } from '../../../models/tecnico';
-import { ToastrService } from 'ngx-toastr';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-tecnico-delete',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule
+  ],
   templateUrl: './tecnico-delete.html',
-  styleUrl: './tecnico-delete.css'
+  styleUrls: ['./tecnico-delete.css']
 })
-export class TecnicoDeleteComponent implements OnInit {
+export class TecnicoDeleteComponent {
 
-tecnico: Tecnico = {
-  id: '',
-  nome: '',
-  email: '',
-  senha: '',
-  perfis: []
-};
-
+  tecnico: Tecnico = {
+    id: '',
+    nome: '',
+    cpf: '',
+    email: '',
+    senha: ''
+  };
 
   constructor(
     private service: TecnicoService,
     private route: ActivatedRoute,
-    public router: Router,
-    private toastr: ToastrService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.tecnico.id = this.route.snapshot.paramMap.get('id')!;
-    this.service.findById(this.tecnico.id).subscribe(res => this.tecnico = res);
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (id) {
+      this.service.findById(id).subscribe({
+        next: (res) => this.tecnico = res,
+        error: () => alert('Erro ao carregar o técnico')
+      });
+    }
   }
 
   delete(): void {
-    this.service.delete(this.tecnico.id!).subscribe({
+    if (!this.tecnico.id) return;
+
+    this.service.delete(this.tecnico.id).subscribe({
       next: () => {
-        this.toastr.success('Técnico deletado com sucesso!');
-        this.router.navigate(['/tecnicos']);
+        alert('Técnico deletado com sucesso!');
+        this.router.navigate(['tecnicos']);
       },
-      error: () => this.toastr.error('Erro ao deletar técnico')
+      error: () => alert('Erro ao deletar!')
     });
+  }
+
+  cancel(): void {
+    this.router.navigate(['tecnicos']);
   }
 }

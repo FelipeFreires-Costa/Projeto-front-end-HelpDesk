@@ -10,7 +10,7 @@ import { provideHttpClient } from '@angular/common/http';
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
-    provideHttpClient(), // ✔ CORRETO
+    provideHttpClient(),
     importProvidersFrom(
       BrowserAnimationsModule,
       ToastrModule.forRoot()

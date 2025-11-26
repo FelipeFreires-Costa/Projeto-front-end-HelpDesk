@@ -1,47 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { TecnicoService } from '../../../services/tecnico.service';
-import { Tecnico } from '../../../models/tecnico';
-import { ToastrService } from 'ngx-toastr';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-tecnico-update',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule
+  ],
   templateUrl: './tecnico-update.html',
-  styleUrl: './tecnico-update.css'
+  styleUrls: ['./tecnico-update.css']
 })
-export class TecnicoUpdateComponent implements OnInit {
+export class TecnicoUpdateComponent {
 
-  tecnico: Tecnico = {
-    id: '',
-    nome: '',
-    email: '',
-    senha: '',
-    perfis: []
-  };
-
-  constructor(
-    private service: TecnicoService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private toastr: ToastrService
-  ) {}
-
-  ngOnInit(): void {
-    this.tecnico.id = this.route.snapshot.paramMap.get('id')!;
-    this.service.findById(this.tecnico.id).subscribe(res => this.tecnico = res);
+  form: FormGroup;
+update(): void {
+  if (this.form.valid) {
+    console.log("Dados enviados:", this.form.value);
+    // depois colocamos a chamada pro service
+  } else {
+    console.warn("Formulário inválido!");
   }
-
-  update(): void {
-    this.service.update(this.tecnico).subscribe({
-      next: () => {
-        this.toastr.success('Técnico atualizado com sucesso!');
-        this.router.navigate(['/tecnicos']);
-      },
-      error: () => this.toastr.error('Não foi possível atualizar o técnico')
+}
+  constructor(
+    private fb: FormBuilder
+  ) {
+    this.form = this.fb.group({
+      id: [''],
+      nome: [''],
+      cpf: [''],
+      email: ['']
     });
   }
 }

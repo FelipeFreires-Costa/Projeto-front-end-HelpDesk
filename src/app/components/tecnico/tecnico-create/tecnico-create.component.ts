@@ -1,41 +1,52 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { TecnicoService } from '../../../services/tecnico.service';
-import { Tecnico } from '../../../models/tecnico';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+// Material
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-tecnico-create',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+
+    // Angular Material
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule
+  ],
   templateUrl: './tecnico-create.html',
-  styleUrl: './tecnico-create.css'
+  styleUrls: ['./tecnico-create.css']
 })
 export class TecnicoCreateComponent {
-  
-  tecnico: Tecnico = {
-    id: '',
-    nome: '',
-    email: '',
-    senha: '',
-    perfis: []
-  };
 
-  constructor(
-    private service: TecnicoService,
-    private toastr: ToastrService,
-    private router: Router
-  ) {}
+  // declare sem inicializar
+  form!: FormGroup;
 
-  create(): void {
-    this.service.create(this.tecnico).subscribe({
-      next: () => {
-        this.toastr.success('Técnico criado com sucesso!');
-        this.router.navigate(['/tecnicos']);
-      },
-      error: () => this.toastr.error('Erro ao criar técnico')
+  // injeta o FormBuilder
+  constructor(private fb: FormBuilder) {
+    // inicializa o form dentro do construtor (depois que fb existe)
+    this.form = this.fb.group({
+      nome: ['', Validators.required],
+      cpf: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      senha: [''] // se precisar de senha no create
     });
+  }
+
+  create() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    console.log("📌 Dados enviados:", this.form.value);
+    // aqui você chamaria o service: this.tecnicoService.create(this.form.value).subscribe(...)
   }
 }

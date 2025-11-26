@@ -1,6 +1,19 @@
-<h2>Confirmar exclusão</h2>
+<mat-card class="card">
+  <h2>Deseja realmente deletar este técnico?</h2>
 
-<p>Tem certeza que deseja excluir o técnico <strong>{{ tecnico.nome }}</strong>?</p>
+  <p><strong>Nome:</strong> {{ tecnico.nome }}</p>
+  <p><strong>CPF:</strong> {{ tecnico.cpf }}</p>
+  <p><strong>Email:</strong> {{ tecnico.email }}</p>
 
-<button (click)="delete()">Excluir</button>
-<button (click)="router.navigate(['/tecnicos'])">Cancelar</button>
+  <div class="buttons">
+    <button mat-raised-button color="warn" (click)="delete()">
+      <mat-icon>delete</mat-icon>
+      Deletar
+    </button>
+
+    <button mat-raised-button color="primary" (click)="cancel()">
+      <mat-icon>cancel</mat-icon>
+      Cancelar
+    </button>
+  </div>
+</mat-card>
