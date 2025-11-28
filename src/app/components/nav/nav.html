@@ -1,5 +1,4 @@
 <mat-drawer-container class="container-principal" autosize>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <mat-drawer #drawer class="sidenav" mode="side" [opened]="true">
     
     <div class="logo-container">
@@ -8,7 +7,6 @@
     </div>
 
     <mat-nav-list class="container-item">
-
       <a mat-list-item routerLink="/home" class="nav-item">
         <mat-icon>home</mat-icon>
         <span>Home</span>
@@ -28,18 +26,11 @@
         <mat-icon>receipt_long</mat-icon>
         <span>Chamado</span>
       </a>
-
-      <a mat-list-item href="https://github.com" target="_blank" class="nav-item">
-        <mat-icon>code</mat-icon> 
-        <span>Felipe Freires</span>
-      </a>
-
     </mat-nav-list>
     
   </mat-drawer>
 
   <mat-drawer-content class="conteudo-principal">
-    
     <mat-toolbar color="primary" class="toolbar">
       <button mat-icon-button (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
@@ -48,6 +39,6 @@
     </mat-toolbar>
 
     <router-outlet></router-outlet>
+    
   </mat-drawer-content>
-
 </mat-drawer-container>

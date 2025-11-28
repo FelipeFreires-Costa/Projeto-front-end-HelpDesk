@@ -1,52 +1,90 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Tecnico } from '../../../models/tecnico';
+import { TecnicoService } from '../../../services/tecnico.service';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-// Material
+// 🔥 Angular Forms
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// 🔥 Angular Material
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-tecnico-create',
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
 
-    // Angular Material
+    // 🔥 Módulos do Material que o componente usa
+    MatCheckboxModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
-  templateUrl: './tecnico-create.html',
-  styleUrls: ['./tecnico-create.css']
+  templateUrl: './tecnico-create.component.html',
+  styleUrls: ['./tecnico-create.component.css']
 })
-export class TecnicoCreateComponent {
+export class TecnicoCreateComponent implements OnInit {
 
-  // declare sem inicializar
-  form!: FormGroup;
-
-  // injeta o FormBuilder
-  constructor(private fb: FormBuilder) {
-    // inicializa o form dentro do construtor (depois que fb existe)
-    this.form = this.fb.group({
-      nome: ['', Validators.required],
-      cpf: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      senha: [''] // se precisar de senha no create
-    });
-  }
-
-  create() {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
+    tecnico: Tecnico = {
+        id:         '',
+        nome:       '',
+        cpf:        '',
+        email:      '',
+        senha:      '',
+        perfis:     [],
+        dataCriacao: ''
     }
 
-    console.log("📌 Dados enviados:", this.form.value);
-    // aqui você chamaria o service: this.tecnicoService.create(this.form.value).subscribe(...)
-  }
+    nome: FormControl =  new FormControl(null, Validators.minLength(3));
+    cpf: FormControl =       new FormControl(null, Validators.required);
+    email: FormControl =        new FormControl(null, Validators.email);
+    senha: FormControl = new FormControl(null, Validators.minLength(3));
+
+    constructor(
+        private service: TecnicoService,
+        private toast:    ToastrService,
+        private router:          Router,
+    ) { }
+
+    ngOnInit(): void { }
+
+    create(): void {
+        this.service.create(this.tecnico).subscribe(() => {
+            this.toast.success('Técnico cadastrado com sucesso', 'Cadastro');
+            this.router.navigate(['tecnicos'])
+        }, ex => {
+            if(ex.error.errors) {
+            ex.error.errors.forEach((element: { message: string }) => {
+            this.toast.error(element.message);
+});
+            } else {
+                this.toast.error(ex.error.message);
+            }
+        })
+    }
+
+    addPerfil(perfil: any): void {
+        if(this.tecnico.perfis.includes(perfil)) {
+            this.tecnico.perfis.splice(this.tecnico.perfis.indexOf(perfil), 1);
+        } else {
+            this.tecnico.perfis.push(perfil);
+        }
+
+    }
+
+    validaCampos(): boolean {
+        return this.nome.valid && this.cpf.valid
+            && this.email.valid && this.senha.valid
+    }
 }

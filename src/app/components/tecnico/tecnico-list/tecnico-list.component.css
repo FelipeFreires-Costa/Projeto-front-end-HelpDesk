@@ -1,0 +1,66 @@
+*{
+    color: white;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 16px;
+    border: 2px solid #21d184;
+}
+
+.container h1{
+    color: #21d184;
+}
+
+table {
+    width: 100%;
+}
+
+mat-form-field {
+    margin-top: 15px;
+    width: 100%;
+    color: #21d184;
+    border-radius: 16px;
+}
+
+button {
+    width: auto;
+    font-size: 16px;
+    border-radius: 8px;
+    color: #21d184;
+    border: 1px solid #21d184;
+    background-color: transparent;
+    padding: 10px;
+    transition: 0.2s ease;
+}
+
+button:hover{
+    transform: translateY(-5px);
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.edit {
+    color: rgb(0, 153, 255);
+}
+
+.delete {
+    color: red;
+}
+
+.mat-elevation-z8[_ngcontent-ng-c2931508587]{
+    border:  1px solid #21d184;
+    border-radius: 12px;
+}
+
+.mat-drawer-container{
+    border:  1px solid #21d184 !important;
+}

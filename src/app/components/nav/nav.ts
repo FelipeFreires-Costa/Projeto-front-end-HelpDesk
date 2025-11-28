@@ -1,32 +1,31 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
-// Imports do Angular Material que vamos usar
+// Imports do Material Design para o Menu Lateral
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 
 @Component({
   selector: 'app-nav',
   standalone: true,
-  // Adicione todos os módulos aqui
-imports: [
-  CommonModule,
-  MatSidenavModule,
-  MatToolbarModule,
-  MatListModule,
-  MatIconModule,
-  MatButtonModule,
-  RouterOutlet,
-  RouterLink
-],
+  // 🔥 Adicionando todos os componentes visuais que o menu usa
+  imports: [
+    CommonModule,
+    RouterModule,
+    RouterOutlet, // Necessário para carregar a Home dentro da Nav
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule
+  ],
   templateUrl: './nav.html',
-  styleUrl: './nav.css'
+styleUrl: './nav.css'
+
 })
-export class NavComponent {
-  // Esta variável vai controlar se o menu está aberto ou fechado em telas pequenas
-  isSidenavOpen = false;
-}
+export class NavComponent { }

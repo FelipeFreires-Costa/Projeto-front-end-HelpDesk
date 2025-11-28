@@ -1,49 +1,62 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-
-// Angular Material
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
-
-import { TecnicoService } from '../../../services/tecnico.service';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Tecnico } from '../../../models/tecnico';
+import { TecnicoService } from '../../../services/tecnico.service';
 
 @Component({
   selector: 'app-tecnico-list',
   standalone: true,
+  templateUrl: './tecnico-list.component.html',
+  styleUrls: ['./tecnico-list.component.css'],
   imports: [
-    CommonModule,
-    RouterModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatTableModule,
+    MatPaginatorModule,
+    MatIconModule,
     MatButtonModule,
-    MatIconModule
-  ],
-  templateUrl: './tecnico-list.html',
-  styleUrl: './tecnico-list.css'
+    FormsModule,
+    NgFor,
+    NgIf
+]
 })
-export class TecnicoListComponent {
+export class TecnicoListComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'nome', 'cpf', 'email', 'acoes'];
-  dataSource: Tecnico[] = [];
+    ELEMENT_DATA: Tecnico[] = []
 
-  constructor(private service: TecnicoService) {}
+    displayedColumns: string[] = ['id', 'nome', 'cpf', 'email', 'acoes'];
+    dataSource = new MatTableDataSource<Tecnico>(this.ELEMENT_DATA);
 
-  ngOnInit() {
-    this.findAll();
-  }
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  findAll() {
-    this.service.findAll().subscribe({
-      next: (res) => {
-        this.dataSource = res;
-        console.log('[LIST] Técnicos carregados:', res);
-      },
-      error: (err) => {
-        console.error('[LIST] Erro ao carregar técnicos:', err);
-        
-      }
-    });
-  }
+    constructor(
+        private service: TecnicoService
+    ) { }
+
+    ngOnInit(): void {
+        this.findAll();
+    }
+
+    findAll() {
+        this.service.findAll().subscribe(resposta => {
+            this.ELEMENT_DATA = resposta
+            this.dataSource = new MatTableDataSource<Tecnico>(resposta);
+            this.dataSource.paginator = this.paginator;
+        })
+    }
+
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+
 }

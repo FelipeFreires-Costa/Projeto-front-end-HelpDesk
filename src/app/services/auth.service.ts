@@ -13,12 +13,13 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  // 🔥 ESTE MÉTODO PRECISA EXISTIR
-  authenticate(creds: Credenciais) {
-    return this.http.post(`${API_CONFIG.baseUrl}/login`, creds, {
-      responseType: 'text'
-    });
-  }
+  // 🔥 renomeado para login
+login(creds: Credenciais) {
+  return this.http.post(`${API_CONFIG.baseUrl}/login`, creds, {
+    observe: 'response',  // <--- ESSA LINHA É OBRIGATÓRIA PARA LER HEADERS
+    responseType: 'text'  // <--- Adicione isso se o token for texto puro, evita erro de JSON parse
+  });
+}
 
   sucessfulLogin(token: string) {
     const cleanToken = token.replace(/"/g, '');

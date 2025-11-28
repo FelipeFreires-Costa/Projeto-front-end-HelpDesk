@@ -1,0 +1,75 @@
+/* Container Principal do Card */
+.home-card {
+  max-width: 800px;
+  margin: 3rem auto; /* Centraliza na tela com espaço no topo */
+  padding: 2rem;
+  
+  /* Fundo escuro moderno (tipo Glassmorphism ou Flat Dark) */
+  background: linear-gradient(145deg, #27282b, #1f2125);
+  
+  /* Fonte Branca como pediu */
+  color: #ffffff;
+
+  /* Bordas arredondadas e suavizadas */
+  border-radius: 16px;
+  
+  /* O detalhe verde (#21d184) na lateral esquerda para dar estilo */
+  border-left: 6px solid #21d184;
+  
+  /* Sombra suave */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* Ajuste do Ícone no Avatar */
+mat-card-header .mat-icon {
+  font-size: 3rem;
+  height: 3rem;
+  width: 3rem;
+  color: #21d184; /* Ícone verde */
+  margin-right: 15px;
+}
+
+/* Título */
+mat-card-title {
+  font-size: 2rem;
+  font-weight: 300; /* Fonte mais fina fica mais moderna */
+  margin-bottom: 8px;
+}
+
+/* Subtítulo */
+mat-card-subtitle {
+  color: #21d184 !important; /* Verde neon */
+  text-transform: uppercase;
+  letter-spacing: 1.5px; /* Espaçamento entre letras */
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+/* Texto do Conteúdo */
+mat-card-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e0e0e0; /* Um branco levemente cinza para não cansar a vista */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* BOTÕES */
+mat-card-actions {
+  margin-top: 10px;
+}
+
+/* Botão Principal (Raised) */
+button[mat-raised-button] {
+  background-color: #21d184 !important; /* Fundo Verde */
+  color: #1a1a1a !important; /* Texto escuro para contraste no verde */
+  font-weight: bold;
+  padding: 0 25px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Efeito Hover no Botão */
+button[mat-raised-button]:hover {
+  transform: translateY(-3px); /* Sobe um pouquinho */
+  box-shadow: 0 0 15px rgba(33, 209, 132, 0.6); /* Brilho neon */
+}

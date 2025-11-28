@@ -1,66 +1,78 @@
-import { Component } from '@angular/core';
+
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-
-import { TecnicoService } from '../../../services/tecnico.service';
+import { ToastrService } from 'ngx-toastr';
 import { Tecnico } from '../../../models/tecnico';
+import { TecnicoService } from '../../../services/tecnico.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tecnico-delete',
   standalone: true,
   imports: [
     CommonModule,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatButtonModule
   ],
-  templateUrl: './tecnico-delete.html',
-  styleUrls: ['./tecnico-delete.css']
+  templateUrl: './tecnico-delete.component.html',
+  styleUrls: ['./tecnico-delete.component.css']
 })
-export class TecnicoDeleteComponent {
+export class TecnicoDeleteComponent implements OnInit {
 
   tecnico: Tecnico = {
     id: '',
     nome: '',
     cpf: '',
     email: '',
-    senha: ''
-  };
+    senha: '',
+    perfis: [],
+    dataCriacao: ''
+  }
 
   constructor(
     private service: TecnicoService,
+    private toast: ToastrService,
+    private router: Router,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-
-    if (id) {
-      this.service.findById(id).subscribe({
-        next: (res) => this.tecnico = res,
-        error: () => alert('Erro ao carregar o técnico')
-      });
-    }
+    this.tecnico.id = this.route.snapshot.paramMap.get('id');
+    this.findById();
   }
 
-  delete(): void {
-    if (!this.tecnico.id) return;
-
-    this.service.delete(this.tecnico.id).subscribe({
-      next: () => {
-        alert('Técnico deletado com sucesso!');
-        this.router.navigate(['tecnicos']);
-      },
-      error: () => alert('Erro ao deletar!')
+  findById(): void {
+    this.service.findById(this.tecnico.id).subscribe(resposta => {
+      resposta.perfis = [];
+      this.tecnico = resposta;
     });
   }
 
-  cancel(): void {
-    this.router.navigate(['tecnicos']);
+  delete(): void {
+    this.service.delete(this.tecnico.id).subscribe(() => {
+      this.toast.success('Técnico deletado com sucesso', 'Delete');
+      this.router.navigate(['tecnicos']);
+
+    }, ex => {
+      if (ex.error && ex.error.errors) {
+        ex.error.errors.forEach((err: { message: string }) => {
+          this.toast.error(err.message);
+        });
+
+      } else {
+        this.toast.error(ex.error.message || 'Erro ao deletar técnico');
+      }
+    });
   }
+
 }
