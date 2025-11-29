@@ -1,7 +1,7 @@
-/* --- CONTAINER PRINCIPAL --- */
+/* --- CARD DO FORMULÁRIO --- */
 .container {
   max-width: 600px;
-  margin: 2rem auto; /* Centraliza na tela */
+  margin: 2rem auto;
   padding: 2.5rem;
   
   /* Fundo Dark Moderno */
@@ -11,28 +11,26 @@
   /* Detalhe Verde na lateral */
   border-left: 6px solid #21d184;
   
-  /* Sombra para destacar do fundo */
+  /* Sombra Profunda */
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* --- TÍTULO --- */
+/* Títulos */
 h1 {
   text-align: center;
-  color: #21d184; /* Verde Neon */
+  color: #21d184;
   font-weight: 300;
   font-size: 2rem;
   margin-bottom: 2rem;
   text-transform: uppercase;
-  letter-spacing: 2px;
 }
 
-/* --- LARGURA TOTAL DOS CAMPOS --- */
 .fullWidth {
   width: 100%;
   margin-bottom: 15px;
 }
 
-/* --- SEÇÃO DOS CHECKBOXES --- */
+/* Checkboxes */
 .section {
   display: flex;
   justify-content: center;
@@ -41,67 +39,61 @@ h1 {
   flex-wrap: wrap;
 }
 
-/* --- ESTILIZAÇÃO DOS CHECKBOXES --- */
-/* Forçando a cor do texto do checkbox para branco/cinza claro */
+/* Overrides para Checkbox Dark Mode */
 ::ng-deep .mat-mdc-checkbox-label {
   color: #e0e0e0; 
 }
-/* Forçando a cor do quadrado do checkbox quando marcado */
 ::ng-deep .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background {
   background-color: #21d184 !important;
   border-color: #21d184 !important;
 }
 
-/* --- INPUTS E FORM FIELDS (O Pulo do Gato para Dark Mode) --- */
+/* --- INPUTS (O Pulo do Gato para Dark Mode) --- */
 
-/* Cor do texto digitado (Branco) */
-::ng-deep .mat-mdc-input-element, 
-::ng-deep input.mat-input-element {
+/* Texto digitado */
+::ng-deep .mat-mdc-input-element {
   color: #ffffff !important;
-  caret-color: #21d184; /* Cor do cursor piscando */
+  caret-color: #21d184;
 }
 
-/* Cor do Label (Placeholder que sobe) */
+/* Label Flutuante */
 ::ng-deep .mat-mdc-form-field-label, 
 ::ng-deep .mat-mdc-floating-label {
   color: #aaaaaa !important;
 }
 
-/* Cor da Borda (Outline) em estado normal */
+/* Bordas */
 ::ng-deep .mat-mdc-notched-outline > * {
   border-color: rgba(255, 255, 255, 0.3) !important;
 }
 
-/* Ícones dentro do input (Verdes) */
+/* Ícones */
 ::ng-deep .mat-mdc-form-field-icon-suffix mat-icon {
   color: #21d184 !important;
 }
 
 /* --- BOTÕES --- */
 
-/* Botão ATUALIZAR (Verde com texto escuro) */
+/* Botão Principal (Verde) */
 button[color="primary"] {
   background-color: #21d184 !important;
-  color: #1a1a1a !important; /* Preto suave para contraste */
+  color: #1a1a1a !important; /* Texto escuro no fundo verde */
   font-weight: bold;
   height: 50px;
   font-size: 1.1rem;
   margin-top: 10px;
-  transition: all 0.3s ease;
+  transition: transform 0.2s;
 }
 
 button[color="primary"]:hover {
-  box-shadow: 0 0 15px rgba(33, 209, 132, 0.4);
   transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(33, 209, 132, 0.4);
 }
 
-/* Botão CANCELAR (Borda Vermelha) */
+/* Botão Cancelar (Outline Vermelho) */
 button[color="warn"] {
   border: 1px solid #ff5252 !important;
   color: #ff5252 !important;
   height: 45px;
   margin-top: 15px;
-}
-button[color="warn"]:hover {
-  background-color: rgba(255, 82, 82, 0.1) !important;
 }

@@ -11,6 +11,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Tecnico } from '../../../models/tecnico';
 import { TecnicoService } from '../../../services/tecnico.service';
+import { CommonModule } from '@angular/common'; // Importante
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-tecnico-list',
@@ -19,6 +21,7 @@ import { TecnicoService } from '../../../services/tecnico.service';
   styleUrls: ['./tecnico-list.component.css'],
   imports: [
     MatFormFieldModule,
+    RouterModule,
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,

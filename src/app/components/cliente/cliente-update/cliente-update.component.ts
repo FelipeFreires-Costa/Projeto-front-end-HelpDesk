@@ -3,39 +3,36 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
-// Imports do Material Design
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 
-// Imports do Projeto
-import { Tecnico } from '../../../models/tecnico';
-import { TecnicoService } from '../../../services/tecnico.service';
+import { Cliente } from '../../../models/cliente';
+import { ClienteService } from '../../../services/cliente.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-tecnico-update',
+  selector: 'app-cliente-update',
   standalone: true,
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,           // Para [(ngModel)]
-    ReactiveFormsModule,   // Para [formControl]
+    FormsModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule
-    // Se você usa a máscara, adicione: NgxMaskDirective aqui
   ],
-  templateUrl: './tecnico-update.component.html',
-  styleUrls: ['./tecnico-update.component.css']
+  templateUrl: './cliente-update.component.html',
+  styleUrls: ['./cliente-update.component.css']
 })
-export class TecnicoUpdateComponent implements OnInit {
+export class ClienteUpdateComponent implements OnInit {
 
-  tecnico: Tecnico = {
+  cliente: Cliente = {
     id: '',
     nome: '',
     cpf: '',
@@ -45,38 +42,34 @@ export class TecnicoUpdateComponent implements OnInit {
     dataCriacao: ''
   }
 
-  // Controles do Formulário para validação
   nome = new FormControl(null, [Validators.minLength(3)]);
   cpf = new FormControl(null, [Validators.required, Validators.minLength(11)]);
   email = new FormControl(null, [Validators.email]);
   senha = new FormControl(null, [Validators.minLength(3)]);
 
   constructor(
-    private service: TecnicoService,
+    private service: ClienteService,
     private toastr: ToastrService,
     private router: Router,
-    private route: ActivatedRoute // Serve para pegar o ID da URL
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    // Pega o ID que veio na URL (ex: /tecnicos/update/1)
-    this.tecnico.id = this.route.snapshot.paramMap.get('id');
+    this.cliente.id = this.route.snapshot.paramMap.get('id');
     this.findById();
   }
 
   findById(): void {
-    this.service.findById(this.tecnico.id).subscribe(resposta => {
-      this.tecnico = resposta;
-      // Converte perfis (que as vezes vem como string) para array se necessário
-      // O backend geralmente já manda certo, mas é bom garantir que perfis exista
+    this.service.findById(this.cliente.id).subscribe(resposta => {
+      this.cliente = resposta;
     });
   }
 
   update(): void {
-    this.service.update(this.tecnico).subscribe({
+    this.service.update(this.cliente).subscribe({
       next: () => {
-        this.toastr.success('Técnico atualizado com sucesso!', 'Sucesso');
-        this.router.navigate(['/tecnicos']);
+        this.toastr.success('Cliente atualizado com sucesso!', 'Sucesso');
+        this.router.navigate(['/clientes']);
       },
       error: (ex) => {
         if (ex.error.errors) {
@@ -91,13 +84,10 @@ export class TecnicoUpdateComponent implements OnInit {
   }
 
   addPerfil(perfil: number): void {
-    // Lógica para adicionar ou remover perfil do array
-    if (this.tecnico.perfis.includes(perfil)) {
-      // Se já tem, remove
-      this.tecnico.perfis = this.tecnico.perfis.filter(p => p !== perfil);
+    if (this.cliente.perfis.includes(perfil)) {
+      this.cliente.perfis = this.cliente.perfis.filter(p => p !== perfil);
     } else {
-      // Se não tem, adiciona
-      this.tecnico.perfis.push(perfil);
+      this.cliente.perfis.push(perfil);
     }
   }
 
