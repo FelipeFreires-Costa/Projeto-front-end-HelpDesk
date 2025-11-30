@@ -1,62 +1,114 @@
-* {
-  color: white;
-}
-
+/* =========================================
+   LAYOUT E ESTRUTURA
+   ========================================= */
 .container {
-  width: 90%;
-  margin: auto;
-  padding: 20px;
-  margin-top: 20px;
-  border-radius: 16px;
-  border: 2px solid #21d184;
-  position: relative;
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
-/* Remove qualquer overlay invisível */
-.container::before {
-  display: none !important;
+h1 {
+  color: #fff;
+  font-weight: 300;
+  margin-bottom: 2rem;
 }
 
-.container h1 {
-  color: #21d184;
+/* =========================================
+   BOTÃO "NOVO TÉCNICO"
+   ========================================= */
+/* Alvo: o botão logo após o h1 */
+button.mat-elevation-z8 {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #21d184; /* Verde Neon */
+  color: #2e3238;            /* Texto escuro */
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: filter 0.3s;
+}
+
+button.mat-elevation-z8:hover {
+  filter: brightness(0.9);
+}
+
+/* =========================================
+   TABELA E CONTAINER (CARD)
+   ========================================= */
+/* A div que envolve a tabela */
+div.mat-elevation-z8 {
+  background: linear-gradient(145deg, #2e3238, #1f2125);
+  border-left: 6px solid #21d184; /* Borda Neon */
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 10px;
 }
 
 table {
   width: 100%;
-}
-
-mat-form-field {
-  margin-top: 15px;
-  width: 100%;
-  color: #21d184;
-  border-radius: 16px;
-}
-
-button {
-  width: auto;
-  font-size: 16px;
-  border-radius: 8px;
-  color: #21d184;
-  border: 1px solid #21d184;
   background-color: transparent;
-  padding: 10px;
-  transition: 0.2s ease;
 }
 
-button:hover {
-  transform: translateY(-5px);
+/* Forçando textos brancos na tabela */
+th {
+  color: #21d184 !important; /* Cabeçalho Verde Neon ou Branco (#fff) se preferir */
+  font-weight: bold;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-h1 {
+td {
+  color: #e0e0e0 !important; /* Texto das linhas */
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* =========================================
+   BOTÕES DE AÇÃO (EDIT / DELETE)
+   ========================================= */
+/* Botão Editar (Primary no HTML) -> Vamos deixar Amarelo/Laranja para destacar no escuro */
+button[color="primary"] mat-icon {
+  color: #ffb74d !important; 
+}
+
+/* Botão Deletar (Warn no HTML) -> Vermelho */
+button[color="warn"] mat-icon {
+  color: #ff5252 !important;
+}
+
+/* =========================================
+   OVERRIDES (INPUTS E PAGINATOR)
+   ========================================= */
+
+/* Input de Filtro */
+::ng-deep .mat-mdc-form-field {
   width: 100%;
-  text-align: center;
-  font-weight: 700;
-  margin: 0 0 2rem 0;
+}
+::ng-deep .mat-mdc-input-element {
+  color: #fff !important;
+  caret-color: #21d184 !important; /* Cursor piscando verde */
+}
+::ng-deep .mat-mdc-form-field-label {
+  color: #ccc !important;
+}
+::ng-deep .mat-mdc-form-field-outline {
+  color: rgba(255,255,255,0.3) !important;
 }
 
-/* Ícones clicáveis */
-.material-icons.edit,
-.material-icons.delete,
-button[mat-icon-button] {
-  cursor: pointer;
+/* Paginador */
+::ng-deep .mat-mdc-paginator {
+  background-color: transparent !important;
+  color: #fff !important;
+}
+::ng-deep .mat-mdc-paginator-icon {
+  fill: #fff !important; /* Setas brancas */
+}
+::ng-deep .mat-mdc-select-value {
+  color: #fff !important; /* Texto do select "Itens por página" */
+}
+::ng-deep .mat-mdc-paginator-page-size-label,
+::ng-deep .mat-mdc-paginator-range-label {
+  color: #ccc !important;
 }

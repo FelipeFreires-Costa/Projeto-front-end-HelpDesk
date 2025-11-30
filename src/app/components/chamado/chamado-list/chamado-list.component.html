@@ -1,0 +1,77 @@
+<div class="container">
+  <h1>Listando Chamados</h1>
+
+  <button routerLink="create" mat-raised-button class="mat-elevation-z8 btn-novo">
+    Novo Chamado
+  </button>
+
+  <mat-form-field appearance="outline">
+    <mat-label>FILTER</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Impressora..." #input>
+  </mat-form-field>
+
+  <div class="mat-elevation-z8 content-table">
+    <table mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="titulo">
+        <th mat-header-cell *matHeaderCellDef> Título </th>
+        <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cliente">
+        <th mat-header-cell *matHeaderCellDef> Cliente </th>
+        <td mat-cell *matCellDef="let element"> {{element.nomeCliente}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="tecnico">
+        <th mat-header-cell *matHeaderCellDef> Técnico </th>
+        <td mat-cell *matCellDef="let element"> {{element.nomeTecnico}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dataAbertura">
+        <th mat-header-cell *matHeaderCellDef> Data Abertura </th>
+        <td mat-cell *matCellDef="let element"> {{element.dataAbertura}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="prioridade">
+        <th mat-header-cell *matHeaderCellDef> Prioridade </th>
+        <td mat-cell *matCellDef="let element"> 
+          <span class="badge" [ngClass]="retornaPrioridade(element.prioridade)">
+            {{ returnsPrioridade(element.prioridade) }}
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> 
+           <span class="badge" [ngClass]="retornaStatus(element.status)">
+            {{ retornaStatus(element.status) }}
+           </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef> Ações </th>
+        <td mat-cell *matCellDef="let element">
+          <a routerLink="update/{{element.id}}">
+            <i class="material-icons edit">edit</i>
+          </a>
+          <a routerLink="read/{{element.id}}">
+            <i class="material-icons delete">visibility</i>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page"></mat-paginator>
+  </div>
+</div>

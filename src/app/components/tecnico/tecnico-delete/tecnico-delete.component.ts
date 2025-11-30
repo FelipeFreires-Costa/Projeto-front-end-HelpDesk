@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Tecnico } from '../../../models/tecnico';
 import { TecnicoService } from '../../../services/tecnico.service';
 import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-tecnico-delete',
@@ -18,6 +19,7 @@ import { Component, OnInit } from '@angular/core';
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,

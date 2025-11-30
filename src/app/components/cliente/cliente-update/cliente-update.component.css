@@ -1,0 +1,103 @@
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+}
+
+h1 {
+  color: #21d184;
+  font-weight: 300;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button[mat-elevation-z8] {
+  background-color: transparent;
+  color: #21d184;
+  border: 1px solid #21d184;
+  padding: 0 20px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+button[mat-elevation-z8]:hover {
+  background-color: rgba(33, 209, 132, 0.1);
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+::ng-deep .mat-mdc-input-element {
+  color: #ffffff !important;
+  caret-color: #21d184;
+}
+
+::ng-deep .mat-mdc-form-field-label {
+  color: #cccccc !important;
+}
+
+::ng-deep .mat-mdc-notched-outline > * {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-notched-outline > * {
+  border-color: #21d184 !important;
+}
+
+.mat-elevation-z8 {
+  background: linear-gradient(145deg, #2e3238, #1f2125); /* Fundo Dark */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+table {
+  width: 100%;
+  background-color: transparent !important;
+}
+
+th.mat-header-cell {
+  background-color: #25282c;
+  color: #21d184;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+td.mat-cell {
+  color: #ffffff !important;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+button[color="primary"] mat-icon {
+  color: #82b1ff !important;
+}
+
+button[color="warn"] mat-icon {
+  color: #ff5252 !important;
+}
+
+mat-paginator {
+  background-color: transparent !important;
+  color: #ffffff !important;
+}
+
+::ng-deep .mat-mdc-paginator-container {
+    color: #ffffff !important;
+}
+::ng-deep .mat-mdc-paginator-icon {
+    fill: #ffffff !important;
+}
+::ng-deep .mat-mdc-select-value {
+    color: #ffffff !important;
+}
+::ng-deep .mat-mdc-select-arrow {
+    color: #ffffff !important;
+}

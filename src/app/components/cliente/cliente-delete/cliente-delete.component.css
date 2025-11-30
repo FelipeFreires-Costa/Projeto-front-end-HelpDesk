@@ -1,19 +1,16 @@
-/* Reutiliza o estilo do card */
 .container {
   max-width: 600px;
   margin: 2rem auto;
   padding: 2.5rem;
   background: linear-gradient(145deg, #2e3238, #1f2125);
   border-radius: 16px;
-  
-  /* Borda Vermelha para indicar Delete */
   border-left: 6px solid #ff5252; 
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 h1 {
   text-align: center;
-  color: #ff5252; /* Título Vermelho */
+  color: #ff5252;
   font-weight: 300;
   font-size: 2rem;
   margin-bottom: 2rem;
@@ -32,36 +29,27 @@ h1 {
   margin-bottom: 30px;
 }
 
-/* --- INPUTS DESABILITADOS (VISIBILIDADE) --- */
-/* Isso é crucial: força o texto desabilitado a ser branco para ler no fundo escuro */
 ::ng-deep .mat-mdc-input-element:disabled {
   color: #ffffff !important;
-  opacity: 0.7; /* Leve transparência para indicar que não edita */
+  opacity: 0.7; 
 }
 
-/* Labels */
+
 ::ng-deep .mat-mdc-form-field-label {
   color: #aaaaaa !important;
 }
 
-/* Bordas */
 ::ng-deep .mat-mdc-notched-outline > * {
   border-color: rgba(255, 255, 255, 0.2) !important;
 }
 
-/* Ícones */
 ::ng-deep .mat-mdc-form-field-icon-suffix mat-icon {
-  color: #ff5252 !important; /* Ícones vermelhos */
+  color: #ff5252 !important;
 }
 
-/* Checkboxes Desabilitados */
 ::ng-deep .mat-mdc-checkbox-disabled .mat-mdc-checkbox-label {
   color: #e0e0e0 !important;
 }
-
-/* --- BOTÕES --- */
-
-/* Botão Deletar (Vermelho Cheio) */
 button[color="warn"] {
   background-color: #ff5252 !important;
   color: white !important;
@@ -75,7 +63,6 @@ button[color="warn"]:hover {
   box-shadow: 0 0 15px rgba(255, 82, 82, 0.4);
 }
 
-/* Botão Cancelar (Azul Outline) */
 button[color="primary"] {
   border: 1px solid #21d184 !important;
   color: #21d184 !important;

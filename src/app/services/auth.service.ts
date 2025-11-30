@@ -12,12 +12,13 @@ export class AuthService {
   jwtService: JwtHelperService = new JwtHelperService();
 
   constructor(private http: HttpClient) {}
-
-  // 🔥 renomeado para login
+logout() {
+  localStorage.clear();
+}
 login(creds: Credenciais) {
   return this.http.post(`${API_CONFIG.baseUrl}/login`, creds, {
-    observe: 'response',  // <--- ESSA LINHA É OBRIGATÓRIA PARA LER HEADERS
-    responseType: 'text'  // <--- Adicione isso se o token for texto puro, evita erro de JSON parse
+    observe: 'response', 
+    responseType: 'text'
   });
 }
 

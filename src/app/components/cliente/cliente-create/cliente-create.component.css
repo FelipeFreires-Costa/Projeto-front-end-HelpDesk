@@ -1,21 +1,14 @@
-/* --- CARD DO FORMULÁRIO --- */
+
 .container {
   max-width: 600px;
   margin: 2rem auto;
   padding: 2.5rem;
-  
-  /* Fundo Dark Moderno */
   background: linear-gradient(145deg, #2e3238, #1f2125);
   border-radius: 16px;
-  
-  /* Detalhe Verde na lateral */
   border-left: 6px solid #21d184;
-  
-  /* Sombra Profunda */
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* Títulos */
 h1 {
   text-align: center;
   color: #21d184;
@@ -30,7 +23,6 @@ h1 {
   margin-bottom: 15px;
 }
 
-/* Checkboxes */
 .section {
   display: flex;
   justify-content: center;
@@ -39,7 +31,6 @@ h1 {
   flex-wrap: wrap;
 }
 
-/* Overrides para Checkbox Dark Mode */
 ::ng-deep .mat-mdc-checkbox-label {
   color: #e0e0e0; 
 }
@@ -48,36 +39,28 @@ h1 {
   border-color: #21d184 !important;
 }
 
-/* --- INPUTS (O Pulo do Gato para Dark Mode) --- */
-
-/* Texto digitado */
 ::ng-deep .mat-mdc-input-element {
   color: #ffffff !important;
   caret-color: #21d184;
 }
 
-/* Label Flutuante */
 ::ng-deep .mat-mdc-form-field-label, 
 ::ng-deep .mat-mdc-floating-label {
   color: #aaaaaa !important;
 }
 
-/* Bordas */
 ::ng-deep .mat-mdc-notched-outline > * {
   border-color: rgba(255, 255, 255, 0.3) !important;
 }
 
-/* Ícones */
+
 ::ng-deep .mat-mdc-form-field-icon-suffix mat-icon {
   color: #21d184 !important;
 }
 
-/* --- BOTÕES --- */
-
-/* Botão Principal (Verde) */
 button[color="primary"] {
   background-color: #21d184 !important;
-  color: #1a1a1a !important; /* Texto escuro no fundo verde */
+  color: #1a1a1a !important;
   font-weight: bold;
   height: 50px;
   font-size: 1.1rem;
@@ -90,7 +73,6 @@ button[color="primary"]:hover {
   box-shadow: 0 0 15px rgba(33, 209, 132, 0.4);
 }
 
-/* Botão Cancelar (Outline Vermelho) */
 button[color="warn"] {
   border: 1px solid #ff5252 !important;
   color: #ff5252 !important;

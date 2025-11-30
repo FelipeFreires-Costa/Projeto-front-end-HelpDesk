@@ -1,4 +1,115 @@
-/* You can add global styles to this file, and also import other style files */
+/* =========================================
+   RESET E FUNDO GLOBAL
+   ========================================= */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #2e3238; /* Fundo principal escuro */
+    color: #fff;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* =========================================
+   SCROLLBAR CUSTOMIZADA (NEON)
+   ========================================= */
+/* Funciona no Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1f2125; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #21d184; /* Verde Neon */
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #1db974; /* Um pouco mais escuro no hover */
+}
+
+/* =========================================
+   CORREÇÕES ANGULAR MATERIAL (MDC)
+   ========================================= */
+
+/* 1. PAGINADOR (Texto e Ícones brancos) */
+.mat-mdc-paginator {
+    background-color: transparent !important; /* Remove fundo branco */
+    color: #fff !important;
+}
+.mat-mdc-paginator-icon {
+    fill: #fff !important; /* Ícones das setas brancos */
+}
+.mat-mdc-paginator-range-label, 
+.mat-mdc-paginator-page-size-label,
+.mat-mdc-select-value-text {
+    color: #cccccc !important;
+}
+
+/* 2. SELECT E MENUS (Fundo escuro nas opções) */
+.mat-mdc-select-panel {
+    background-color: #2e3238 !important; /* Fundo do dropdown */
+    border: 1px solid #21d184; /* Bordinha neon */
+}
+.mat-mdc-option {
+    color: #fff !important; /* Texto das opções */
+}
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+    color: #21d184 !important; /* Texto do item selecionado verde */
+}
+.mat-mdc-option:hover {
+    background-color: rgba(33, 209, 132, 0.1) !important; /* Hover suave */
+}
+
+/* 3. INPUTS (Correção de cor e label) */
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
+    border-color: rgba(255, 255, 255, 0.3) !important; /* Borda padrão mais visível */
+}
+
+/* Foco no Input (Neon) */
+.mdc-text-field--outlined.mdc-text-field--focused .mdc-notched-outline__leading,
+.mdc-text-field--outlined.mdc-text-field--focused .mdc-notched-outline__notch,
+.mdc-text-field--outlined.mdc-text-field--focused .mdc-notched-outline__trailing {
+    border-color: #21d184 !important;
+    border-width: 2px !important;
+}
+
+/* Cor do texto digitado */
+.mat-mdc-input-element {
+    color: #fff !important;
+    caret-color: #21d184 !important; /* O cursor que pisca fica verde */
+}
+
+/* 4. CORREÇÃO DO AUTOFILL AMARELO DO NAVEGADOR */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #2e3238 inset !important; /* Força o fundo escuro */
+    -webkit-text-fill-color: white !important; /* Força texto branco */
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* =========================================
+   TOASTR (NOTIFICAÇÕES)
+   ========================================= */
+/* Fundo escuro e sucesso verde */
+.toast-success {
+    background-color: #2e3238 !important;
+    border-left: 6px solid #21d184 !important;
+    color: #fff !important;
+}
+.toast-error {
+    background-color: #2e3238 !important;
+    border-left: 6px solid #ff5252 !important;
+    color: #fff !important;
+}
+.toast-info {
+    background-color: #2e3238 !important;
+    border-left: 6px solid #448aff !important;
+    color: #fff !important;
+}

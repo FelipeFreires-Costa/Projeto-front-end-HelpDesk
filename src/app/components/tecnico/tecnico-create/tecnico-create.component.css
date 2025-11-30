@@ -1,38 +1,127 @@
+/* --- CONTAINER PRINCIPAL --- */
 .container {
-    width: 35rem;
+    color: white;
+    width: 100%;
+    max-width: 1200px;
     margin: auto;
-    padding: 1rem;
-    border-radius: .6rem;
+    padding: 2rem;
 }
 
-.fullWidth {
+/* --- TÍTULO EM DESTAQUE --- */
+h1 {
+    color: #21d184;
+    /* Verde Neon */
+    font-weight: 300;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- BOTÃO NOVO CLIENTE --- */
+button[mat-stroked-button] {
+    color: #21d184 !important;
+    border-color: #21d184 !important;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+button[mat-stroked-button]:hover {
+    background-color: rgba(33, 209, 132, 0.1);
+}
+
+/* --- FILTRO (INPUT) --- */
+mat-form-field {
     width: 100%;
 }
 
-h1, p {
-    text-align: center;
+/* Força texto BRANCO no input */
+::ng-deep .mat-mdc-input-element {
+    color: #ffffff !important;
+    caret-color: #21d184;
 }
 
-img {
-    height: 12rem;
-    margin: auto;
+/* Label cinza claro para não ofuscar */
+::ng-deep .mat-mdc-form-field-label {
+    color: #cccccc !important;
 }
 
-.section {
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
+/* Borda Branca (Outline) */
+::ng-deep .mat-mdc-notched-outline>* {
+    border-color: rgba(255, 255, 255, 0.5) !important;
 }
 
-button {
-    margin-top: .5rem;
+/* Borda Verde quando foca */
+::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-notched-outline>* {
+    border-color: #21d184 !important;
 }
 
-p {
-    margin-top: 4rem;
-    opacity: .5;
+/* --- TABELA (CARD DARK) --- */
+.mat-elevation-z8 {
+    background: linear-gradient(145deg, #2e3238, #1f2125);
+    /* Fundo Dark */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
-mat-icon {
-    opacity: .8;
+table {
+    width: 100%;
+    background-color: transparent !important;
+}
+
+/* Cabeçalho da Tabela */
+th.mat-header-cell {
+    background-color: #25282c;
+    color: #21d184;
+    /* Títulos em Verde */
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* --- TEXTO DA TABELA BRANCO --- */
+td.mat-cell {
+    color: #ffffff !important;
+    /* Texto das linhas BRANCO */
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Ícones de Ação */
+.edit mat-icon {
+    color: #82b1ff;
+    /* Azul claro */
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.delete mat-icon {
+    color: #ff5252;
+    /* Vermelho */
+    cursor: pointer;
+}
+
+/* --- PAGINADOR BRANCO --- */
+mat-paginator {
+    background-color: transparent !important;
+    color: #ffffff !important;
+    /* Texto geral branco */
+}
+
+/* Cor dos textos "Items per page", números, etc */
+::ng-deep .mat-mdc-paginator-container {
+    color: #ffffff !important;
+}
+
+/* Cor das setinhas de navegação */
+::ng-deep .mat-mdc-paginator-icon {
+    fill: #ffffff !important;
+}
+
+/* Cor do texto do select (dropdown) */
+::ng-deep .mat-mdc-select-value {
+    color: #ffffff !important;
+}
+
+/* Cor da setinha do dropdown */
+::ng-deep .mat-mdc-select-arrow {
+    color: #ffffff !important;
 }

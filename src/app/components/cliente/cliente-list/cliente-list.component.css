@@ -1,21 +1,22 @@
-/* Container Principal */
+
 .container {
   width: 100%;
-  max-width: 1200px; /* Limita a largura em telas gigantes */
+  max-width: 1200px;
   margin: auto;
   padding: 2rem;
+  color: white !important;
 }
 
-/* Título */
+
 h1 {
-  color: #21d184; /* Verde Neon */
+  color: #21d184;
   font-weight: 300;
   margin-bottom: 20px;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-/* Botão "Novo Cliente" */
+
 button[mat-stroked-button] {
   color: #21d184 !important;
   border-color: #21d184 !important;
@@ -26,13 +27,10 @@ button[mat-stroked-button] {
 button[mat-stroked-button]:hover {
   background-color: rgba(33, 209, 132, 0.1);
 }
-
-/* --- ESTILIZAÇÃO DO FILTRO (Input) --- */
 mat-form-field {
   width: 100%;
 }
 
-/* Força texto branco no input de filtro */
 ::ng-deep .mat-mdc-input-element {
   color: #ffffff !important;
   caret-color: #21d184;
@@ -44,54 +42,73 @@ mat-form-field {
   border-color: rgba(255, 255, 255, 0.3) !important;
 }
 
-/* --- TABELA E PAGINADOR --- */
 .mat-elevation-z8 {
-  background: linear-gradient(145deg, #2e3238, #1f2125); /* Fundo Dark */
+  background: linear-gradient(145deg, #2e3238, #1f2125);
   border-radius: 8px;
-  overflow: hidden; /* Arredonda os cantos da tabela */
+  overflow: hidden;
   box-shadow: 0 10px 20px rgba(0,0,0,0.4);
 }
 
 table {
   width: 100%;
-  background-color: transparent !important; /* Remove fundo branco padrão */
+  background-color: transparent !important;
 }
 
-/* Cabeçalho da Tabela */
 th.mat-header-cell {
   background-color: #25282c;
-  color: #21d184; /* Títulos em Verde */
+  color: #21d184;
   font-weight: bold;
   font-size: 1rem;
 }
 
-/* Células da Tabela */
+
 td.mat-cell {
-  color: #e0e0e0; /* Texto quase branco */
-  border-bottom-color: rgba(255, 255, 255, 0.1); /* Linhas sutis */
+  color: #e0e0e0;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Ícones de Ação */
 .edit mat-icon {
-  color: #82b1ff; /* Azul claro para editar */
+  color: #82b1ff;
   cursor: pointer;
   margin-right: 10px;
 }
 
 .delete mat-icon {
-  color: #ff5252; /* Vermelho suave para deletar */
+  color: #ff5252;
   cursor: pointer;
 }
 
-/* Paginador */
+
 mat-paginator {
   background-color: transparent !important;
   color: #ffffff !important;
 }
-/* Cor dos textos do paginador */
+
 ::ng-deep .mat-mdc-paginator-container {
     color: white !important;
 }
 ::ng-deep .mat-mdc-paginator-icon {
     fill: white !important;
+}
+
+.text-green {
+  color: #21d184 !important;
+}
+
+
+.text-white {
+  color: #ffffff !important;
+}
+
+.text-gray {
+  color: #e0e0e0 !important;
+}
+
+.text-danger {
+  color: #ff5252 !important;
+}
+
+
+.text-info {
+  color: #82b1ff !important;
 }

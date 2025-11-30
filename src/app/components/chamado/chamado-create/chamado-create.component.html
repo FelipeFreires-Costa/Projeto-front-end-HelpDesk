@@ -1,0 +1,68 @@
+<div class="container">
+  <form class="form mat-elevation-z8"> 
+    <h1>Criar Chamado</h1>
+    
+    <div class="row-dupla">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Título do Chamado</mat-label>
+        <input matInput [(ngModel)]="chamado.titulo" name="titulo" [formControl]="titulo" required>
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="row-dupla">
+      <mat-form-field appearance="outline">
+        <mat-label>Cliente</mat-label>
+        <mat-select [(ngModel)]="chamado.cliente" name="cliente" [formControl]="cliente" required>
+          <mat-option *ngFor="let cli of clientes" [value]="cli.id">
+            {{ cli.nome }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Técnico</mat-label>
+        <mat-select [(ngModel)]="chamado.tecnico" name="tecnico" [formControl]="tecnico" required>
+          <mat-option *ngFor="let tec of tecnicos" [value]="tec.id">
+            {{ tec.nome }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="row-dupla">
+      <mat-form-field appearance="outline">
+        <mat-label>Prioridade</mat-label>
+        <mat-select [(ngModel)]="chamado.prioridade" name="prioridade" [formControl]="prioridade" required>
+          <mat-option [value]="0">BAIXA</mat-option>
+          <mat-option [value]="1">MÉDIA</mat-option>
+          <mat-option [value]="2">ALTA</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="chamado.status" name="status" [formControl]="status" required>
+          <mat-option [value]="0">ABERTO</mat-option>
+          <mat-option [value]="1">ANDAMENTO</mat-option>
+          <mat-option [value]="2">ENCERRADO</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Deixe uma observação</mat-label>
+      <textarea matInput [(ngModel)]="chamado.observacoes" name="observacoes" [formControl]="observacoes" required rows="5"></textarea>
+    </mat-form-field>
+
+    <div class="botoes">
+      <button (click)="create()" [disabled]="!validaCampos()" mat-raised-button class="btn-primary">
+        SALVAR
+      </button>
+      <button routerLink="../" mat-stroked-button color="warn">
+        CANCELAR
+      </button>
+    </div>
+
+  </form>
+</div>

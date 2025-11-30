@@ -13,9 +13,9 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     RouterModule,
-    MatCardModule,   // Necessário para <mat-card>
-    MatIconModule,   // Necessário para <mat-icon>
-    MatButtonModule  // Necessário para botões
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule
   ],
   templateUrl: './home.html',
   styleUrls: ['./home.css']

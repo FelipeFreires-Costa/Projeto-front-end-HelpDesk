@@ -1,38 +1,30 @@
-/* Faz o container principal ocupar 100% da tela */
 .container-principal {
   height: 100vh;
   width: 100vw;
-  background-color:#1a1c1e;
+  background-color: #1a1c1e;
 }
 
-/* Estilos do Sidenav (menu lateral) */
 .sidenav {
   width: 250px;
-  background-color:#1a1c1e;
-  border-right: 1px solid #eee;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+  background-color: #1a1c1e;
+  border-right: 1px solid #21d184; 
+  border-radius: 0px 4px 4px 0px;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Container do Logo no topo do Sidenav */
 .logo-container {
   display: flex;
   align-items: center;
   padding: 20px;
   border-bottom: 1px solid #21d184;
-}
-
-.logo-container mat-icon{
-  height: 30px;
-  width: 40px;
-}
-
-.sidenav{
-  border-radius: 0px 4px 4px 0px;
-  border-right: 1px solid #21d184;
+  margin-bottom: 10px;
 }
 
 .logo-icon {
   font-size: 32px;
+  height: 32px;
+  width: 32px;
   margin-right: 12px;
   color: #21d184;
 }
@@ -41,48 +33,67 @@
   font-size: 1.2rem;
   font-weight: 500;
   color: #ffffff;
-
 }
 
-/* Estilizando cada item do menu */
+.nav-list-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0;
+}
+
+
+.menu-spacer {
+  margin-top: 200px;
+}
+
 .nav-item {
-display: flex;
+  display: flex;
   align-items: center;
   gap: 12px;
-  padding: 0 20px;
-  height: 50px; /* Adicionar uma altura fixa pode ajudar também */
+  height: 50px;
   color: #ffffff;
-}
-.nav-item:hover {
+  margin: 0 10px;
   border-radius: 4px;
-  background-color: #21d184;
-  color: #000;
-}
-
-.nav-item span{
-  margin: 0;
-  padding: 0;
-  color: #ffffff;
-  margin-bottom: 10px;
-}
-
-.mat-drawer-inner-container{
-  border-right: solid 1px #21d184;
+  transition: all 0.3s;
 }
 
 .nav-item mat-icon {
-  margin-right: 12px;
+  margin-right: 10px;
   color: #21d184;
-  border-radius: 4px;
-  padding: 0;
+}
+
+.nav-item span {
+  font-size: 1rem;
+}
+
+.mat-mdc-nav-list .mat-mdc-list-item{
+  margin: 0;
+}
+
+.nav-item:hover {
+  background-color: rgba(33, 209, 132, 0.1);
+  border-left: 4px solid #21d184;
+}
+
+.nav-item:hover span {
+  color: #fff;
 }
 
 
-.nav-item:hover mat-icon {
-  color: #ffffff;
+.nav-item.logout {
+  margin-bottom: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Estilos da Toolbar (barra do topo) */
+.nav-item.logout:hover {
+  background-color: rgba(255, 82, 82, 0.1);
+  border-left: 4px solid #ff5252;
+}
+
+.nav-item.logout:hover mat-icon {
+  color: #ff5252;
+}
+
 .toolbar {
   background-color: #1a1c1e;
   color: #eee;
@@ -91,23 +102,15 @@ display: flex;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.toolbar mat-icon{
+.toolbar mat-icon {
   color: #eee;
 }
 
-.toolbar button:hover{
-  background-color: #21d184;
+.toolbar button:hover {
+  background-color: rgba(33, 209, 132, 0.1);
 }
 
-/* Container do conteúdo da página */
 .conteudo-principal {
   background-color: #1a1c1e;
-}
-
-.pagina{
-  color: #eee;
-}
-
-.pagina {
-  padding: 30px;
+  padding: 20px;
 }

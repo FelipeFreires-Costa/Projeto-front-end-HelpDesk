@@ -6,7 +6,9 @@
       <span class="logo-text">HelpDesk</span>
     </div>
 
-    <mat-nav-list class="container-item">
+    <mat-nav-list class="nav-list-container">
+      
+
       <a mat-list-item routerLink="/home" class="nav-item">
         <mat-icon>home</mat-icon>
         <span>Home</span>
@@ -26,12 +28,24 @@
         <mat-icon>receipt_long</mat-icon>
         <span>Chamado</span>
       </a>
+      <div class="menu-spacer"></div>
+
+      <a mat-list-item href="https://github.com/seu-usuario/seu-repositorio" target="_blank" class="nav-item">
+        <mat-icon>code</mat-icon>
+        <span>Código Fonte</span>
+      </a>
+
+      <a mat-list-item (click)="logout()" class="nav-item logout">
+        <mat-icon>logout</mat-icon>
+        <span>Sair</span>
+      </a>
+
     </mat-nav-list>
     
   </mat-drawer>
 
   <mat-drawer-content class="conteudo-principal">
-    <mat-toolbar color="primary" class="toolbar">
+    <mat-toolbar class="toolbar">
       <button mat-icon-button (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>

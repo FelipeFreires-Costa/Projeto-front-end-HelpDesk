@@ -36,13 +36,12 @@ export class ClienteListComponent implements OnInit {
 
   ELEMENT_DATA: Cliente[] = [];
 
-  // Define as colunas que vão aparecer na tabela
+
   displayedColumns: string[] = ['id', 'nome', 'cpf', 'email', 'acoes'];
   
-  // Fonte de dados da tabela
   dataSource = new MatTableDataSource<Cliente>(this.ELEMENT_DATA);
 
-  // Referência ao paginador
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
@@ -53,7 +52,6 @@ export class ClienteListComponent implements OnInit {
     this.findAll();
   }
 
-  // Busca todos os clientes no Backend
   findAll() {
     this.service.findAll().subscribe(resposta => {
       this.ELEMENT_DATA = resposta;
@@ -62,7 +60,6 @@ export class ClienteListComponent implements OnInit {
     });
   }
 
-  // Filtro da tabela
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
