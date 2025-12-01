@@ -1,0 +1,49 @@
+<div class="container">
+  <form class="form mat-elevation-z8"> 
+    <h1 style="color: white;">Detalhes do Chamado</h1>
+    
+    <div class="row-dupla">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Título do Chamado</mat-label>
+        <input matInput [value]="chamado.titulo" disabled style="color: white;">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="row-dupla">
+      <mat-form-field appearance="outline">
+        <mat-label>Cliente</mat-label>
+        <input matInput [value]="chamado.nomeCliente" disabled style="color: white;">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Técnico</mat-label>
+        <input matInput [value]="chamado.nomeTecnico" disabled style="color: white;">
+      </mat-form-field>
+    </div>
+
+    <div class="row-dupla">
+      <mat-form-field appearance="outline">
+        <mat-label>Prioridade</mat-label>
+        <input matInput [value]="retornaPrioridade(chamado.prioridade)" disabled style="color: white;">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <input matInput [value]="retornaStatus(chamado.status)" disabled style="color: white;">
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Observações</mat-label>
+      <textarea matInput [value]="chamado.observacoes" disabled rows="5" style="color: white;"></textarea>
+    </mat-form-field>
+
+    <div class="botoes">
+      <button routerLink="/chamados" mat-stroked-button color="warn" style="width: 100%;">
+        VOLTAR
+      </button>
+    </div>
+
+  </form>
+</div>

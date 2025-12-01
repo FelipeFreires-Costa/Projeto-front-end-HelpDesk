@@ -26,53 +26,38 @@ export class LoginComponent {
     private toastr: ToastrService
   ) {}
 
-  entrar() {
-    console.log('[LOGIN] 1. Iniciando autenticação...');
+ entrar() {
+    console.log('[LOGIN] 1. Enviando credenciais...', this.creds);
 
     this.authService.login(this.creds).subscribe({
       next: (resposta: any) => {
+        console.log('[LOGIN] 2. Resposta recebida do servidor.');
         
-        let token: string | null = null;
+        // DEBUG: Vamos ver quais headers chegaram
+        // Nota: As vezes os headers aparecem vazios no console do navegador por segurança, mas o código lê.
+        console.log('[LOGIN] Headers disponíveis:', resposta.headers.keys());
 
-        // TENTATIVA 1: O token está no cabeçalho (Header)?
-        if (resposta.headers && resposta.headers.get) {
-           token = resposta.headers.get('Authorization');
-           if (token) {
-             token = token.replace('Bearer ', '');
-           }
-        }
+        // O Java manda no header 'Authorization'
+        let token = resposta.headers.get('Authorization');
 
-        // TENTATIVA 2: O token veio no corpo (Body)?
-        if (!token && resposta.body && resposta.body.token) {
-           token = resposta.body.token;
-        }
-
-        // TENTATIVA 3: A resposta é o token puro?
-        if (!token && typeof resposta === 'string' && resposta.length > 10) {
-            token = resposta;
-        }
-
-        // --- FINALIZA O LOGIN ---
         if (token) {
-          localStorage.setItem('token', token);
-          console.log('[LOGIN] Sucesso! Token salvo.');
+          console.log('[LOGIN] 3. Token encontrado no Header!');
           
-          // 🔥 CORREÇÃO AQUI: Mudamos de '/dashboard' para '/tecnicos'
-          this.router.navigate(['/home']).then(
-             success => {
-                if (success) console.log('[LOGIN] Navegação para /tecnicos realizada!');
-                else console.warn('[LOGIN] Navegação falhou (verifique se a rota existe).');
-             },
-             error => console.error('[LOGIN] Erro ao navegar:', error)
-          );
+          // Limpa o prefixo para salvar só o HASH
+          token = token.replace('Bearer ', '');
+          
+          localStorage.setItem('token', token);
+          console.log('[LOGIN] 4. Token salvo no LocalStorage (sem Bearer).');
 
+          this.router.navigate(['/home']);
         } else {
-          this.toastr.error('Erro ao processar login: Token não encontrado.', 'Erro');
+          console.error('[LOGIN] ERRO: O Header "Authorization" não veio ou o JS não conseguiu ler.');
+          this.toastr.error('Erro de comunicação: Token não recebido.');
         }
       },
-      error: (erro: any) => {
-        console.error('[LOGIN] Erro:', erro);
-        this.toastr.error('Usuário ou senha inválidos.', 'Acesso Negado');
+      error: (ex) => {
+        console.error('[LOGIN] Erro ao logar:', ex);
+        this.toastr.error('Usuário ou senha inválidos');
       }
     });
   }

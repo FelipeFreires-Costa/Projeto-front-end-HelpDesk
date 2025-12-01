@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Chamado } from '../../../models/chamado';
@@ -21,7 +21,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './chamado-list.component.html',
   styleUrls: ['./chamado-list.component.css']
 })
-export class ChamadoListComponent {
+export class ChamadoListComponent implements OnInit {
 
   ELEMENT_DATA: Chamado[] = [];
   displayedColumns: string[] = ['id', 'titulo', 'cliente', 'tecnico', 'dataAbertura', 'prioridade', 'status', 'acoes'];
@@ -48,16 +48,20 @@ export class ChamadoListComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-
-  retornaStatus(status: number): string {
-    if(status == 0) return 'ABERTO';
-    if(status == 1) return 'ANDAMENTO';
+  retornaStatus(status: any): string {
+    if(status == '0') return 'ABERTO';
+    if(status == '1') return 'ANDAMENTO';
     return 'ENCERRADO';
   }
 
-  retornaPrioridade(prioridade: number): string {
-    if(prioridade == 0) return 'BAIXA';
-    if(prioridade == 1) return 'MÉDIA';
+  retornaPrioridade(prioridade: any): string {
+    if(prioridade == '0') return 'BAIXA';
+    if(prioridade == '1') return 'MÉDIA';
     return 'ALTA';
+  }
+
+  // Método opcional para exibir prioridade no texto
+  returnsPrioridade(prioridade: any): string {
+    return this.retornaPrioridade(prioridade);
   }
 }

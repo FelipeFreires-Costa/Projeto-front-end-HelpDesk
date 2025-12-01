@@ -1,46 +1,48 @@
 <div class="container">
-  <h1>Listando Técnicos</h1>
+  
+  <h1 style="color: white;">Listando Técnicos</h1>
 
-  <button routerLink="/tecnicos/create" class="mat-elevation-z8">Novo técnico</button>
+  <button mat-raised-button routerLink="create" class="mat-elevation-z8 btn-novo">
+    Novo técnico
+  </button>
 
   <mat-form-field appearance="outline">
     <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input />
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input style="color: white;"/>
   </mat-form-field>
 
-  <div class="mat-elevation-z8">
+  <div class="mat-elevation-z8 content-table">
     <table mat-table [dataSource]="dataSource">
+      
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        <th mat-header-cell *matHeaderCellDef style="color: white;">ID</th>
+        <td mat-cell *matCellDef="let element" style="color: white;">{{ element.id }}</td>
       </ng-container>
 
       <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef class="text-white">Nome</th>
-        <td mat-cell *matCellDef="let element">{{ element.nome }}</td>
+        <th mat-header-cell *matHeaderCellDef style="color: white;">Nome</th>
+        <td mat-cell *matCellDef="let element" style="color: white;">{{ element.nome }}</td>
       </ng-container>
 
       <ng-container matColumnDef="cpf">
-        <th mat-header-cell *matHeaderCellDef>CPF</th>
-        <td mat-cell *matCellDef="let element">{{ element.cpf }}</td>
+        <th mat-header-cell *matHeaderCellDef style="color: white;">CPF</th>
+        <td mat-cell *matCellDef="let element" style="color: white;">{{ element.cpf }}</td>
       </ng-container>
 
       <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef>Email</th>
-        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+        <th mat-header-cell *matHeaderCellDef style="color: white;">Email</th>
+        <td mat-cell *matCellDef="let element" style="color: white;">{{ element.email }}</td>
       </ng-container>
 
       <ng-container matColumnDef="acoes">
-        <th mat-header-cell *matHeaderCellDef>Ações</th>
+        <th mat-header-cell *matHeaderCellDef style="color: white;">Ações</th>
         <td mat-cell *matCellDef="let element">
-
-          <button mat-icon-button color="primary" 
-            [routerLink]="['/tecnicos/update', element.id]">
+          
+          <button mat-icon-button color="primary" [routerLink]="['update', element.id]">
             <mat-icon>edit</mat-icon>
           </button>
 
-          <button mat-icon-button color="warn" 
-            [routerLink]="['/tecnicos/delete', element.id]">
+          <button mat-icon-button color="warn" [routerLink]="['delete', element.id]">
             <mat-icon>delete</mat-icon>
           </button>
 

@@ -58,20 +58,27 @@ export class ChamadoUpdateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.chamado.id = this.route.snapshot.paramMap.get('id');
+    
+
     this.findById();
     this.findAllClientes();
     this.findAllTecnicos();
   }
 
   findById(): void {
-    this.chamadoService.findById(this.chamado.id).subscribe(resposta => {
-      this.chamado = resposta;
-      this.chamado.prioridade = resposta.prioridade.toString();
-      this.chamado.status = resposta.status.toString();
-    }, ex => {
-      this.toast.error(ex.error.error);
-    })
+    this.chamadoService.findById(this.chamado.id).subscribe({
+      next: (resposta) => {
+        this.chamado = resposta;
+        
+        this.chamado.prioridade = resposta.prioridade.toString();
+        this.chamado.status = resposta.status.toString();
+      },
+      error: (ex) => {
+        this.toast.error(ex.error.error);
+      }
+    });
   }
 
   update(): void {
@@ -83,7 +90,7 @@ export class ChamadoUpdateComponent implements OnInit {
         this.router.navigate(['chamados']);
       },
       error: (ex) => {
-        this.toast.error(ex.error.error, 'Erro');
+        this.toast.error(ex.error.error);
       }
     })
   }
@@ -102,7 +109,19 @@ export class ChamadoUpdateComponent implements OnInit {
 
   validaCampos(): boolean {
     return this.prioridade.valid && this.status.valid && 
-    this.titulo.valid && this.observacoes.valid && 
-    this.tecnico.valid && this.cliente.valid;
+           this.titulo.valid && this.observacoes.valid && 
+           this.tecnico.valid && this.cliente.valid;
+  }
+
+  retornaStatus(status: any): string {
+    if(status == '0') return 'ABERTO';
+    if(status == '1') return 'EM ANDAMENTO';
+    return 'ENCERRADO';
+  }
+
+  retornaPrioridade(prioridade: any): string {
+    if(prioridade == '0') return 'BAIXA';
+    if(prioridade == '1') return 'MÉDIA';
+    return 'ALTA';
   }
 }

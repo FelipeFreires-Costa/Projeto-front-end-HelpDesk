@@ -1,11 +1,18 @@
 <div class="container">
-  <form class="form mat-elevation-z8"> 
-    <h1>Atualizar Chamado</h1>
-    
+  <form class="form mat-elevation-z8">
+    <h1 style="color: white">Atualizar Chamado</h1>
+
     <div class="row-dupla">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Título do Chamado</mat-label>
-        <input matInput [(ngModel)]="chamado.titulo" name="titulo" [formControl]="titulo" required>
+        <input
+          matInput
+          [(ngModel)]="chamado.titulo"
+          name="titulo"
+          [formControl]="titulo"
+          required
+          style="color: white"
+        />
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       </mat-form-field>
     </div>
@@ -33,7 +40,12 @@
     <div class="row-dupla">
       <mat-form-field appearance="outline">
         <mat-label>Prioridade</mat-label>
-        <mat-select [(ngModel)]="chamado.prioridade" name="prioridade" [formControl]="prioridade" required>
+        <mat-select
+          [(ngModel)]="chamado.prioridade"
+          name="prioridade"
+          [formControl]="prioridade"
+          required
+        >
           <mat-option value="0">BAIXA</mat-option>
           <mat-option value="1">MÉDIA</mat-option>
           <mat-option value="2">ALTA</mat-option>
@@ -52,17 +64,28 @@
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Deixe uma observação</mat-label>
-      <textarea matInput [(ngModel)]="chamado.observacoes" name="observacoes" [formControl]="observacoes" required rows="5"></textarea>
+      <textarea
+        matInput
+        [(ngModel)]="chamado.observacoes"
+        name="observacoes"
+        [formControl]="observacoes"
+        required
+        rows="5"
+        style="color: white"
+      ></textarea>
     </mat-form-field>
 
     <div class="botoes">
-      <button (click)="update()" [disabled]="!validaCampos()" mat-raised-button class="btn-primary">
-        ATUALIZAR
+      <button
+        type="button"
+        (click)="update()"
+        [disabled]="!validaCampos()"
+        mat-raised-button
+        class="btn-primary"
+      >
+        SALVAR ALTERAÇÕES
       </button>
-      <button routerLink="../../" mat-stroked-button color="warn">
-        CANCELAR
-      </button>
+      <button routerLink="/chamados" mat-stroked-button color="warn">CANCELAR</button>
     </div>
-
   </form>
 </div>

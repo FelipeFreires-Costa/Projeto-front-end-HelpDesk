@@ -13,7 +13,7 @@ import { Tecnico } from '../../../models/tecnico';
 import { TecnicoService } from '../../../services/tecnico.service';
 import { CommonModule } from '@angular/common'; // Importante
 import { RouterModule } from '@angular/router';
-
+import { AuthService } from '../../../services/auth.service';
 @Component({
   selector: 'app-tecnico-list',
   standalone: true,
@@ -42,7 +42,8 @@ export class TecnicoListComponent implements OnInit {
     @ViewChild(MatPaginator) paginator!: MatPaginator;
 
     constructor(
-        private service: TecnicoService
+        private service: TecnicoService,
+        public authService: AuthService
     ) { }
 
     ngOnInit(): void {
